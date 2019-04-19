@@ -1,6 +1,6 @@
 displayName = Drowned Mod
 author = TFC The Flying Creeper (GiantLuigi4)
-version = 1.0.0.11
+version = 1.0.0.2
 includeSource = true
 includePDB = false
 homepage = https://sites.google.com/view/drownedmod/home
