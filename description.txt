@@ -1,11 +1,10 @@
 This is a mod that makes getting your own drowned world easier
 
 It is a mod to flood your world.
-Use Calamity Mod and you MUST be on a large world.
+Use Calamity Mod for the best experience and you MUST be on a large world.
+If you don't use a large world it will hang at filling the first layer.
 
-(V1.0.0.102 because I didn't have a github account when I made this but now I do so I wanted to add that. (that also allows for an icon I think (at least it seems that way)))
-
-if you want to know what I mean by Drowned world watch Hectique's playlist of it at:
+If you want to know what I mean by Drowned world watch Hectique's playlist of it at:
 tinyurl.com/y5kr9h4v
 
 Have fun and please give some feedback at:
