@@ -71,10 +71,14 @@ namespace DrownedMod
 	public class startup: ModWorld
 	{
 		private int i = 0; //x
-		private int k = 0; //y
+		private int k = 998; //y
+		private int z = 0; //x(bubbles after flood)
+		
+		private string wS = "Small";
 		
 		private bool Broad = false;
 		private bool done = false;
+		private bool rowComplete = false;
 		
 		private int left = 0;
 		private int right = 0;
@@ -82,7 +86,10 @@ namespace DrownedMod
 		private int bubble = 0;
 		
 		private int rightL = 8398;
-		private int bubbleL = 2197;
+		private int bubbleL = 2199;
+		
+		private int rightM = 6398;
+		private int bubbleM = 1594;
 		
 		private int rightS = 4198;
 		private int bubbleS = 998;
@@ -100,7 +107,7 @@ namespace DrownedMod
 		
 		public override void Load(TagCompound tag)
 		{
-			done = tag.GetBool("Drowned");
+			//done = tag.GetBool("Drowned");
 		}
 		
 		public override void PostUpdate()
@@ -112,34 +119,72 @@ namespace DrownedMod
 				{
 					if (!Broad)
 					{
-						if (Drowned_Config.worldSize == "Large")
+						if ((Main.maxTilesX-2) == rightL)
+						{
+							wS = "Large";
+						} else if ((Main.maxTilesX-2) == rightM)
+						{
+							wS = "Medium";
+						} else if ((Main.maxTilesX-2) == rightS)
+						{
+							wS = "Small";
+						}
+						
+						if (wS == "Large")
 						{
 							k = bubbleL;
 							bubble = bubbleL;
 							right = rightL;
-						} else if (Drowned_Config.worldSize == "Medium")
+						} else if (wS == "Medium")
 						{
-							done = true;
-						} else if (Drowned_Config.worldSize == "Small")
+							k = bubbleM;
+							bubble = bubbleM;
+							right = rightM;
+						} else if (wS == "Small")
 						{
 							k = bubbleS;
 							bubble = bubbleS;
 							right = rightS;
 						} else {
-							done = true;
+							//done = true;
+							Main.NewText("Invalid world.");
+							Main.NewText("Rightmost tile is at" + (Main.maxTilesX-2));
+							Main.NewText("Large is" + rightL);
+							Main.NewText("Medium is" + rightM);
+							Main.NewText("Small is" + rightS);
+							Main.NewText("Please use one of these three world sizes");
+						}
+						/*bubble = Main.maxTilesY-204;
+						right = Main.maxTilesY-2;
+						
+						k = bubble - 1;*/
+						if (!done)
+						{
+							Main.NewText(" ");
+							Main.NewText("Drowned Mod: Please wait while " + Drowned_Config.type + " is added");
+							Main.NewText(" ");
+							Main.NewText("World size:" + wS);
+							Main.NewText("Drowned Mod: Also shoutouts to Hectique,");
+							Main.NewText("both discord and Hectique are on the mod's site.");
+							Main.NewText(" ");
 						}
 						
-						Main.NewText("Please wait while water is added");
 						Broad = true;
 					}
-					fill152587890625Tile(Drowned_Config.ID);
-					fill152587890625Tile(Drowned_Config.ID);
-					fill152587890625Tile(Drowned_Config.ID);
-					fill152587890625Tile(Drowned_Config.ID);
-					fill152587890625Tile(Drowned_Config.ID);
-					fill152587890625Tile(Drowned_Config.ID);
+					
+							fillRow(Drowned_Config.ID);
+							fillRow(Drowned_Config.ID);
+							fillRow(Drowned_Config.ID);
+							fillRow(Drowned_Config.ID);
+							fillRow(Drowned_Config.ID);
+							fillRow(Drowned_Config.ID);
+							fillRow(Drowned_Config.ID);
+							fillRow(Drowned_Config.ID);
+							fillRow(Drowned_Config.ID);
+					
+					
 				} else {
-					Main.NewText("Initail Flood has been turned off in the config file.");
+					Main.NewText("Drowned Mod: Initail Flood has been turned off in the config file.");
 					/*Main.NewText("Init Flood:" + Drowned_Config.Initail_Flood);
 					Main.NewText("Top Flood:" + Drowned_Config.FFT);
 					Main.NewText("Left Flood:" + Drowned_Config.FFL);
@@ -157,6 +202,9 @@ namespace DrownedMod
 					fillARoofTile();
 					fillARoofTile();
 					fillARoofTile();
+					
+					fillABubble();fillABubble();fillABubble();fillABubble();fillABubble();
+					
 					//Main.NewText("Top Flood:" + Drowned_Config.FFT);
 				}
 				
@@ -174,8 +222,10 @@ namespace DrownedMod
 			}
 		}
 		
-		public virtual void fill152587890625Tile(int fluidID)
+		public virtual void fillRow(int fluidID)
 		{
+			rowComplete = false;
+			
 			fill390625Tile(fluidID);
 			fill390625Tile(fluidID);
 			fill390625Tile(fluidID);
@@ -212,11 +262,26 @@ namespace DrownedMod
 		
 		public virtual void fillFiveTile(int fluidID)
 		{
-			fillATile(fluidID);
-			fillATile(fluidID);
-			fillATile(fluidID);
-			fillATile(fluidID);
-			fillATile(fluidID);
+			if (!done || rowComplete)
+			{
+				fillATile(fluidID);
+			}
+			if (!done || rowComplete)
+			{
+				fillATile(fluidID);
+			}
+			if (!done || rowComplete)
+			{
+				fillATile(fluidID);
+			}
+			if (!done || rowComplete)
+			{
+				fillATile(fluidID);
+			}
+			if (!done || rowComplete)
+			{
+				fillATile(fluidID);
+			}
 		}
 		
 		public virtual void fillARoofTile()
@@ -252,6 +317,21 @@ namespace DrownedMod
 			i += 1;*/
 		}
 		
+		public virtual void fillABubble()
+		{
+				
+				Main.tile[i, bubble].active(true);
+				Main.tile[i, bubble].type = 379;
+				if (z == right)
+				{
+					z = left;
+					//k -= 1;
+					//Main.NewText(k);
+					//Main.NewText(top);
+				}
+				z += 1;
+		}
+		
 		public virtual void fillATile(int fluidID)
 		{
 				
@@ -274,10 +354,13 @@ namespace DrownedMod
 					NetMessage.SendTileSquare(-1, i, k, 1);
 				}
 				
-			if (i > right)
+			if (i == right)
 			{
 				i = left;
 				k -= 1;
+				//Main.NewText(k);
+				//Main.NewText(top);
+				rowComplete = true;
 			}
 			if (k < top)
 			{
@@ -349,10 +432,33 @@ namespace DrownedMod
 	
 	public class Text : ModPlayer
 	{
+		//private int bubbleL = 2197;
+		private int bubble = Main.maxTilesY - 200;
+		//private int bubbleS = 998;
+
 		public override void SetControls()
 		{
-			Main.NewText("tX:" + player.position.X/16);
-			Main.NewText("tY:" + player.position.Y/16);
+			/*Main.NewText("");
+			Main.NewText("");
+			Main.NewText("");
+			Main.NewText("");
+			Main.NewText("tX:" + (int)(player.position.X/16));
+			Main.NewText("tY:" + (int)(player.position.Y/16));
+			Main.NewText("C:" + Main.rockLayer);
+			Main.NewText("mTX:" + Main.maxTilesX);
+			Main.NewText("mTY:" + Main.maxTilesY);
+			//Main.NewText("dFBTBL:" + (Main.maxTilesY - bubbleL));
+			//Main.NewText("dFBTBS:" + (Main.maxTilesY - bubbleS));
+			Main.NewText("Right:" + (Main.maxTilesX - 2));
+			Main.NewText("Bottom:" + (Main.maxTilesY));
+			Main.NewText("Heck:" + (Main.maxTilesY - 204));*/
+			
+			//Main.NewText("tX:" + (int)(player.position.X/16));
+			//Main.NewText("tY:" + (int)(player.position.Y/16));
+			//Main.NewText("Bottom:" + (Main.maxTilesY));
+			//Main.NewText("Right:" + (Main.maxTilesX - 2));
+			
+			
 			//Drowned_Config.Load();
 			if (player.position.Y < 2197)
 			{

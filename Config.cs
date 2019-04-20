@@ -39,7 +39,7 @@ namespace DrownedMod
 		public static string FFTL = "no";
 		public static string FFTR = "no";
 		public static string type = "Water";
-		public static string worldSize = "Large";
+		//public static string worldSize = "Large";
 		public static int ID = 0;
 		public static bool fileExistis = false;
 		public static string vers;
@@ -75,7 +75,7 @@ namespace DrownedMod
 				Configuration.Put("Initail Flood", Initail_Flood);
 				
 				Configuration.Put("", "");
-				Configuration.Put("", "");
+				Configuration.Put(" ", "");
 				/*
 				Configuration.Put("Should the game flood the world from the specified area yes/no.", "These might cause lag. Or mabey they just won't work.");
 				Configuration.Put("Flood From Top of the world", FFT);
@@ -87,16 +87,16 @@ namespace DrownedMod
 				Configuration.Put("", "");
 				*/
 				Configuration.Put("Fluid to fill the world with (Water/Honey/Lava) (This should be a word not a number.", "");
-				Configuration.Put("1=Water, 2=Honey, 3=Llava", "");
+				Configuration.Put("1=Water, 2=Honey, 3=Lava", "");
 				Configuration.Put("Fluid", type);
-				Configuration.Put("", "");
-				Configuration.Put("", "");
+				Configuration.Put("  ", "");
+				Configuration.Put("   ", "");
 				
-				Configuration.Put("Large, Medium or Small.", "");
-				Configuration.Put("World size", worldSize);
+				//Configuration.Put("Large, Medium or Small.", "");
+				//Configuration.Put("World size", worldSize);
 				
-				Configuration.Put("", "");
-				Configuration.Put("", "");
+				//Configuration.Put("", "");
+				//Configuration.Put("", "");
 				
 				Configuration.Put("DO NOT TOUCH", "!!!!");
 				Configuration.Put("Version", "1.0.0.1");
@@ -117,7 +117,7 @@ namespace DrownedMod
 				Configuration.Get<string>("Flood From Top Left Corner of the world", ref FFTL);
 				Configuration.Get<string>("Flood From Top Right Corner of the world", ref FFTR);
 				Configuration.Get<string>("Fluid", ref type);
-				Configuration.Get<string>("World size", ref worldSize);
+				//Configuration.Get<string>("World size", ref worldSize);
 				Configuration.Get<string>("Version", ref vers);
 			}
 			
@@ -129,7 +129,7 @@ namespace DrownedMod
 				ID = 2;
 			} else if (type == "Lava")
 			{
-				ID = 3;
+				ID = 1;
 			}// else {
 			//	ID = 2;
 			//}

@@ -5,9 +5,9 @@ Use Calamity Mod for the best experience and you MUST be on a large world.
 
 Now with config!
 
-If you want to use a small world you need to specify in the config.
-You can also change the flood type and disable the initial flood (for if your world was drowned with tEdit).
-*DISCLAMER MEDIUM WORLD DESN'T WORK YET!*
+You can change the flood type and disable the initial flood (for if your world was drowned with tEdit or something).
+
+DO NOT MINE TOO FAST! THE GAME WILL DIE IF YOU DO!
 
 If you want to know what I mean by Drowned world watch Hectique's playlist of it at:
 tinyurl.com/y5kr9h4v

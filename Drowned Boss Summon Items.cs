@@ -34,7 +34,12 @@ namespace DrownedMod
 	{
 		public override void SetStaticDefaults()
 		{
-			Tooltip.SetDefault("Summons a plant.\nReuseable! Has a cooldown.");
+			Tooltip.SetDefault(
+			"Summons a plant." + "\n" +
+			"Reuseable! Has a cooldown." + "\n" +
+			"Can only be used in the caverns layer," + "\n" +
+			"in the jungle."
+			);
 			DisplayName.SetDefault("Flowering Bulb");
 		}
 
@@ -49,13 +54,14 @@ namespace DrownedMod
 			item.useStyle = 4;
 			item.UseSound = SoundID.Item44;
 			item.consumable = true;
+			item.scale = 2f;
 		}
 
 		// We use the CanUseItem hook to prevent a player from using this item while the boss is present in the world.
 		public override bool CanUseItem(Player player)
 		{
 			// "player.ZoneUnderworldHeight" could also be written as "player.position.Y / 16f > Main.maxTilesY - 200"
-			return (NPC.downedMechBossAny && !NPC.AnyNPCs(NPCID.Plantera));
+			return (NPC.downedMechBossAny && !NPC.AnyNPCs(NPCID.Plantera) && player.ZoneJungle/* && (Main.player[Main.myPlayer].position.Y > Main.rockLayer)*/);
 		}
 
 		public override bool UseItem(Player player)
@@ -64,6 +70,12 @@ namespace DrownedMod
 			Main.PlaySound(SoundID.Roar, player.position, 0);
 			item.stack = 2;
 			return true;
+			item.scale = 1.5f;
+		}
+		
+		public virtual void UpdateInventory(Player player)
+		{
+			item.scale = 2f;
 		}
 		
 		public override void AddRecipes()
