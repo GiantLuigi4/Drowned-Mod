@@ -1,0 +1,11 @@
+displayName = Drowned Mod
+author = TFC The Flying Creeper (GiantLuigi4)
+version = 1.1.2.1
+includeSource = true
+includePDB = false
+homepage = https://sites.google.com/view/drownedmod/home
+
+
+dllReferences = drpc
+buildIgnore = *.git, *.csproj, *.user, *.sln, *.exe, .vs/*, bin/*, obj/*	
+side = Client
