@@ -1,0 +1,20 @@
+This is a mod that makes getting your own drowned world easier
+|
+It is a mod to flood your world.
+Use Calamity Mod for the best experience and you MUST be on a large world.
+|
+You can change the flood type and disable the initial flood (for if your world was drowned with tEdit or something).
+|
+Now with universal world size support AND extra small/extra large world.
+|
+DO NOT MINE TOO FAST! THE GAME MIGHT DIE IF YOU DO!
+|
+Blue jellyfish will drop 3-5 gel while green, pink and blood drop 1-3
+|
+Credits to Bazingo in the drowned discord for the idea of EoC dropping a diving helmet.
+|
+If you want to know what I mean by Drowned world watch Hectique's playlist of it at:
+tinyurl.com/y5kr9h4v
+|
+Have fun and please give some feedback at:
+discord.gg/F3YkwAH
