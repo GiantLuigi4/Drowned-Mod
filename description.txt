@@ -26,3 +26,7 @@ tinyurl.com/y5kr9h4v
 |
 Have fun and please give some feedback at:
 discord.gg/F3YkwAH
+|
+Minor patches
+|
+If you don't want your worlds evaporating, get an older version off github.
