@@ -74,7 +74,7 @@ namespace DrownedMod
 			RPControl.presence.smallImageText = null;
 			RPControl.Update();
 			UpdaterUnload();
-			startup.done = false;
+			//startup.done = false;
 		}
 
 		public override void Unload()
